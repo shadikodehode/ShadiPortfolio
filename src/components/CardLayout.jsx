@@ -1,26 +1,29 @@
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence } from "motion/react"
 import { NavBar } from "./NavBar.jsx"
+import { useView } from "../context/ViewContext.jsx"
+import { MotionBox } from "./MotionBox.jsx"
 
-export function CardLayout({ currentView, setCurrentView, ActiveView }) {
-  const isLanding = currentView === 'landing'
+export function CardLayout({ ActiveView }) {
+  const { currentView, isLanding } = useView()
 
   return (
     <>
-      {!isLanding && <NavBar currentView={currentView} setCurrentView={setCurrentView} />}
+      {!isLanding && <NavBar />}
 
       <AnimatePresence mode="wait">
-        <motion.div
+        <MotionBox
+          layout
           key={currentView}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={{ opacity: 0, transition: { duration: 0.03 } }}
           transition={{ duration: 0.1 }}
         >
-          <AvitveView />
-        </motion.div>
+          <ActiveView />
+        </MotionBox>
       </AnimatePresence>
 
-      {isLanding && <NavBar currentView={currentView} setCurrentView={setCurrentView} />}
+      {isLanding && <NavBar />}
     </>
   )
 }
