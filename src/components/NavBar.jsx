@@ -1,10 +1,10 @@
-import { NAV_LINKS } from "./navLinks.js"
+import { NAV_LINKS } from "../data/navLinks.js"
 
 export function NavBar({ currentView, setCurrentView }) {
 const isLanding = currentView === 'landing'
 
   return (
-    <nav className={`flex gap-4 ${isLanding ? 'flex-col' : 'flex-row tiems-start'}`}>
+    <nav className={`flex gap-4 ${isLanding ? 'flex-col' : 'flex-row items-start'}`}>
       {NAV_LINKS.map(({ key, label }) => (
         <button
           key={key}
