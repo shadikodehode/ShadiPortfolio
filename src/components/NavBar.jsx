@@ -2,7 +2,7 @@ import { NAV_LINKS } from "./navLinks.js"
 
 export function NavBar({ currentView, setCurrentView }) {
   return (
-    <nav>
+    <nav className="flex flex-col gap-2">
       {NAV_LINKS.map(({ key, label }) => (
         <button
           key={key}
