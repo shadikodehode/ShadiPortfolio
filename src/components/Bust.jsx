@@ -8,6 +8,7 @@ export function Bust() {
   return (
     <MotionBox 
       layout
+      transition={{ ease: "easeInOut" }}
       className="flex w-40 h-40 bg-gray-300 items-center justify-center gap-8 rounded-full"
     >
       <Eye mouseX={x} mouseY={y} />

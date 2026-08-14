@@ -7,6 +7,7 @@ export function Card({ children }) {
   return (
     <MotionBox
       layout
+      transition={{ ease: "easeInOut", duration: 0.3 }}
       className={`flex items-center justify-center p-8 bg-gray-100 gap-4 ${
         isLanding ? 'flex-row' : 'flex-col'
       }`}

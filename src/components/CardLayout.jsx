@@ -1,6 +1,5 @@
-import { AnimatePresence } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import { NavBar } from "./NavBar.jsx"
-import { MotionBox } from "./MotionBox.jsx"
 import { useView } from "../context/ViewContext.jsx"
 
 export function CardLayout({ ActiveView }) {
@@ -8,24 +7,21 @@ export function CardLayout({ ActiveView }) {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {!isLanding && <NavBar key="nav" />}
-      </AnimatePresence>
+      <div className={isLanding ? 'order-2' : 'oder-1'}>
+        <NavBar />
+      </div>
 
       <AnimatePresence mode="wait">
-        <MotionBox
-          key={currentView}
+        <motion.div
+           key={currentView}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.08 } }}
-          transition={{ duration: 0.1 }}
+          transition={{ ease: "easeInOut", duration: 0.1 }}
+          className={isLanding ? 'order-1' : 'order-2'}
         >
           <ActiveView />
-        </MotionBox>
-      </AnimatePresence>
-
-      <AnimatePresence mode="wait">
-        {isLanding && <NavBar key="nav" />}
+        </motion.div>
       </AnimatePresence>
     </>
   )
