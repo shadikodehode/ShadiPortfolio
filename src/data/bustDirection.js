@@ -12,9 +12,9 @@ export const DISPLAY_SIZE = 160
 
 export const DIRECTION_THRESHOLDS = {
   up: 60,
-  down: 60,
-  left: 80,
-  right: 80,
+  down: 100,
+  left: 120,
+  right: 120,
 }
 
 export const EYE_OFFSETS = {
