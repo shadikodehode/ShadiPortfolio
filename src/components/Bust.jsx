@@ -10,7 +10,7 @@ import { DISPLAY_SIZE, EYE_OFFSETS } from "../data/bustDirection.js"
 export function Bust() {
   const { x, y } = useMousePosition()
   const bustRef = useRef(null)
-  const direction = useBustDirection(bustRef)
+  const direction = useBustDirection(bustRef, x, y)
   const offset = EYE_OFFSETS[direction] ?? EYE_OFFSETS.default
 
   return (

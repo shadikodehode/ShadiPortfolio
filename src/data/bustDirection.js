@@ -10,6 +10,13 @@ export const FRAME_WIDTH = 400
 export const FRAME_HEIGHT = 400
 export const DISPLAY_SIZE = 160
 
+export const DIRECTION_THRESHOLDS = {
+  up: 60,
+  down: 60,
+  left: 80,
+  right: 80,
+}
+
 export const EYE_OFFSETS = {
   default: { x: 0, y: 0 },
   up: { x: 0, y: -12 },

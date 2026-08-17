@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react"
-import { useMousePosition } from "./useMousePosition.js"
+import { calculateDirection } from "../utils/directionMath.js"
+import { DIRECTION_THRESHOLDS } from "../data/bustDirection.js"
 
-const THRESHOLD = {
-  up: 10,
-  down: 10,
-  left: 60,
-  right: 60,
-}
-
-export function useBustDirection(targetRef) {
-  const { x, y } = useMousePosition()
+export function useBustDirection(targetRef, mouseX, mouseY) {
   const [direction, setDirection] = useState('default')
 
   useEffect(() => {
@@ -19,21 +12,12 @@ export function useBustDirection(targetRef) {
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
 
-    const dx = x - centerX
-    const dy = y - centerY
+    const dx = mouseX - centerX
+    const dy = mouseY - centerY
 
-    let next = 'default'
-
-    if (Math.abs(dx) > Math.abs(dy)) {
-      if (dx > rect.width / 2 + THRESHOLD.right) next = 'right'
-      else if (dx < -(rect.width / 2 + THRESHOLD.left)) next = 'left'
-    } else {
-      if (dy > rect.height / 2 + THRESHOLD.down) next = 'down'
-      else if (dy < -(rect.height / 2 + THRESHOLD.up)) next = 'up'
-    }
-
+    const next = calculateDirection(dx, dy, rect, DIRECTION_THRESHOLDS)
     setDirection((prev) => (prev === next ? prev : next))
-  }, [x, y, targetRef])
+  }, [mouseX, mouseY, targetRef])
 
   return direction
 }
